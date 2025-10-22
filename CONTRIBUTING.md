@@ -79,3 +79,13 @@ for (var i = 2; i <= 7; i++) {
         inc.update();
     }
 })(inputs, outputs);
+// Auto-assign incident to team based on priority
+(function execute(inputs, outputs) {
+    var inc = new GlideRecord('incident');
+    if (inc.get(inputs.incident_sys_id)) {
+        if (inc.priority == 1) inc.assignment_group = 'Network Support';
+        else inc.assignment_group = 'Helpdesk';
+        inc.update();
+    }
+})(inputs, outputs);
+
